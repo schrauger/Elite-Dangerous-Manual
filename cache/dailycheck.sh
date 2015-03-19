@@ -16,13 +16,17 @@ wget -O "$elite_quick_daily" "$elite_quick_url"
 
 # full manual
 if [ ! -f "$elite_full_current" ]; then
+  # no 'current' exists. link to daily and continue.
   ln -s "$elite_full_daily" "$elite_full_current";
 else
+  # current exists. compare with daily.
   diff "$elite_full_current" "$elite_full_daily" 
   if [ $? -ne 0 ]; then
-    rm "$elite_full_current";
+    # newest version differs. save and update
+    rm "$elite_full_current"; #only removes symlink, not actual file.
     ln -s "$elite_full_daily" "$elite_full_current";
   else
+    # newest version is the same. delete daily download.
     rm "$elite_full_daily";
   fi;
 fi;
