@@ -7,8 +7,8 @@ elite_quick_daily="ELITE-DANGEROUS-MANUAL $current_date.pdf"
 elite_full_url="http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-GAME-MANUAL.pdf"
 elite_quick_url="http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-MANUAL.pdf"
 
-wget -O "$elite_full_daily" "$elite_full_url"
-wget -O "$elite_quick_daily" "$elite_quick_url"
+wget --quiet -O "$elite_full_daily" "$elite_full_url"
+wget --quiet -O "$elite_quick_daily" "$elite_quick_url"
 
 # 2. Compare files.
 # 3. If different, save. Else, delete.
