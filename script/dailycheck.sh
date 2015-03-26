@@ -44,7 +44,6 @@ else
       echo "$current_date No Change - Full" >> $log_dir
     fi;
   else
-    echo 'file not exists'
     # had a malfunction. either wget failed to get the file,
     # or some other error (permissions, hd space, etc) caused
     # the new daily to not download properly
@@ -68,9 +67,6 @@ else
       echo "$current_date No Change - Quick" >> $log_dir
     fi;
   else
-    # had a malfunction. either wget failed to get the file,
-    # or some other error (permissions, hd space, etc) caused
-    # the new daily to not download properly
     echo "$elite_quick_daily not found. Filesystem error. Check permissions." >> $log_dir
   fi;
 fi;
