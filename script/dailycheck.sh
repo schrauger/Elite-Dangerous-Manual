@@ -1,3 +1,4 @@
+#!/bin/bash
 # Add this script to your crontab.
 # Run `crontab -e`, then place this line at the bottom.
 #  Be sure to change the path to the proper location of the script,
