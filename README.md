@@ -7,6 +7,11 @@ This is not an official repository. A [script][script] downloads the latest vers
 
 Even if there isn't any important historical significance, it can still be fun just to look back at old manuals to see how the game has progressed.
 
+## Script
+Included is a linux bash script. It can be used to check for new versions daily.
+
+When set up as a daily cron job, it will automatically download the latest copy of the full and quick manual and compare it to the current version. If they are the same, it will discard the daily copy. If it differs, then a new version has been placed online, and it will archive the 'current' copy and make the latest daily version the new 'current' version.
+
 [elite]: http://www.elitedangerous.com/
 [full]: http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-GAME-MANUAL.pdf
 [quick]: http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-MANUAL.pdf
