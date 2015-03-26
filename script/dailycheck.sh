@@ -1,3 +1,9 @@
+# Add this script to your crontab.
+# Run `crontab -e`, then place this line at the bottom.
+#  Be sure to change the path to the proper location of the script,
+#  and make sure to `chmod +x dailycheck.sh` so that it is executable.
+5 0 * * * /home/USERNAME/workspace/Elite-Dangerous-Manual/script/dailycheck.sh
+
 # 1. Download daily manual, and save filename with date.
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 DIR="$DIR/"
