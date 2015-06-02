@@ -8,6 +8,8 @@ This is not an official repository. A [script][script] downloads the latest vers
 Even if there isn't any important historical significance, it can still be fun just to look back at old manuals to see how the game has progressed.
 
 ## Script
+Note: this script is no longer useful. As of May 1, 2015, Frontier modified their url scheme. Since then, the quickstart manual exists as a web page on their site, and the full manual is linked from that page (with a new url for each new version). To get this script working, I need to rewrite it to parse the html and acquire the full manual links to download.
+
 Included is a linux bash script. It can be used to check for new versions daily (or hourly).
 
 When set up as a cron job, it will automatically download the latest copy of the full and quick manual and compare it to the current version. If they are the same, it will discard the daily copy. If it differs, that means a new version has been placed online, and it will archive the 'current' copy and make the latest daily version the new 'current' version.
