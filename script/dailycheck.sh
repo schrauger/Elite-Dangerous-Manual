@@ -10,15 +10,21 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 DIR="$DIR/"
 log_dir_full=$DIR"log_full.txt"
 log_dir_quick=$DIR"log_quick.txt"
+log_dir_eng_full=$DIR"log_eng_full.txt"
+
 current_date=`date "+%Y-%m-%d.%H"`
 elite_full_current="$DIR""ELITE-DANGEROUS-GAME-MANUAL current.pdf"
 elite_quick_current="$DIR""ELITE-DANGEROUS-MANUAL current.pdf"
+elite_eng_full_current="$DIR""English-PlayersGuidevX.YZ-INTERACTIVE current.pdf"
 elite_full_daily="$DIR""ELITE-DANGEROUS-GAME-MANUAL $current_date.pdf" 
 elite_quick_daily="$DIR""ELITE-DANGEROUS-MANUAL $current_date.pdf" 
+elite_eng_full_daily="$DIR""English-PlayersGuidevX.YZ-INTERACTIVE $current_date.pdf" 
 elite_full_url="http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-GAME-MANUAL.pdf"
 elite_quick_url="http://hosting.zaonce.net/elite/website/assets/ELITE-DANGEROUS-MANUAL.pdf"
+elite_eng_full_url="https://elitedangerous.com/guide/"
 wget --quiet -O "$elite_full_daily" "$elite_full_url"
 wget --quiet -O "$elite_quick_daily" "$elite_quick_url"
+wget --quiet -O "$elite_eng_full_daily" "$elite_eng_full_url"
 
 # 2. Compare files.
 # 3. If different, save. Else, delete.
@@ -69,5 +75,25 @@ else
     fi;
   else
     echo "$elite_quick_daily not found. Filesystem error. Check permissions." >> $log_dir_quick
+  fi;
+fi;
+
+# full english manual. this is a newer link on frontier's actual site.
+if [ ! -L "$elite_eng_full_current" ]; then
+  ln -sf "$elite_eng_full_daily" "$elite_eng_full_current";
+  echo "$current_date Missing Symlink - English Full" >> $log_dir_eng_full
+else
+  if [ -f "$elite_eng_full_daily" ]; then
+    diff "$elite_eng_full_current" "$elite_eng_full_daily" >> $log_dir_eng_full
+    if [ $? -ne 0 ]; then
+      rm "$elite_eng_full_current";
+      ln -sf "$elite_eng_full_daily" "$elite_eng_full_current";
+      echo "$current_date New Version - Eng Full" >> $log_dir_eng_full
+    else
+      rm "$elite_eng_full_daily";
+      echo "$current_date No Change - Full" >> $log_dir_eng_full
+    fi;
+  else
+    echo "$elite_eng_full_daily not found. Filesystem error. Check permissions." >> $log_dir_eng_full
   fi;
 fi;
