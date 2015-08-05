@@ -38,7 +38,7 @@ if [ ! -L "$elite_full_current" ]; then
   echo "$current_date Missing Symlink - Full" >> $log_dir_full
 else
   # current exists. compare with daily.
-  if [ -f "$elite_full_daily" ]; then
+  if [ -s "$elite_full_daily" ]; then
     diff "$elite_full_current" "$elite_full_daily" >> $log_dir_full
     if [ $? -ne 0 ]; then
       # newest version differs. save and update
@@ -63,7 +63,7 @@ if [ ! -L "$elite_quick_current" ]; then
   ln -sf "$elite_quick_daily" "$elite_quick_current";
   echo "$current_date Missing Symlink - Quick" >> $log_dir_quick
 else
-  if [ -f "$elite_quick_daily" ]; then
+  if [ -s "$elite_quick_daily" ]; then
     diff "$elite_quick_current" "$elite_quick_daily" >> $log_dir_quick
     if [ $? -ne 0 ]; then
       rm "$elite_quick_current";
@@ -83,7 +83,7 @@ if [ ! -L "$elite_eng_full_current" ]; then
   ln -sf "$elite_eng_full_daily" "$elite_eng_full_current";
   echo "$current_date Missing Symlink - English Full" >> $log_dir_eng_full
 else
-  if [ -f "$elite_eng_full_daily" ]; then
+  if [ -s "$elite_eng_full_daily" ]; then
     diff "$elite_eng_full_current" "$elite_eng_full_daily" >> $log_dir_eng_full
     if [ $? -ne 0 ]; then
       rm "$elite_eng_full_current";
